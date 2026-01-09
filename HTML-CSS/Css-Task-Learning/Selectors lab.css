@@ -1,0 +1,43 @@
+/*
+Selectors task
+
+3- select p with class mainClass direct child for div with id myDiv and make it styled 
+4- select all p inside div and style them 
+5- select input with type text element with class myClass
+6- select span elements after div 
+7- select p with class myClass 
+8- select div with id myDiv 
+*/
+
+p{
+    color: red;
+}
+
+p,div{
+    color: rebeccapurple;
+}
+
+#mydiv div > p.mainClass{
+    background-color: rgb(155, 134, 134);
+
+}
+
+div p{
+    color: rgb(40, 220, 233);
+}
+
+input[type="text"].myClass{
+    background-color: brown;
+}
+
+div~span{
+    background-color: coral;
+}
+
+p.myClass{
+    background-color: blue;
+}
+
+div#mydiv{
+    background-color: black;
+}

@@ -1,0 +1,17 @@
+Mohamed Abdelhaq 
+=============================================================
+em:-
+
+Relative to its parent font size
+undefined behaviour with nested elements
+Size depends on where it is used
+
+=============================================================
+rem
+
+Relative to the root font size
+Consistent everywhere
+Not affected by nesting
+
+=============================================================
+
