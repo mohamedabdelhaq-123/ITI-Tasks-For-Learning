@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="startSlideshow" onclick="startSlide()">Start Slideshow</button>
+    <button id="stopSlideshow" onclick="stopSlide()">Stop Slideshow</button>
+    <button id="Nextpic" onclick="nextPic()">Next Picture</button>
+    <button id="Prevpic" onclick="prevPic()">Previous Picture</button>
+
+    <script>
+        var index = 0;
+        var images = [
+            '1.jpg'
+            , '2.jpg'
+            , '3.jpg'
+            , '4.jpg'
+            , '5.jpg'
+            , '6.jpg'
+        ];
+
+        function nextPic() {
+            if (index < images.length - 1) {
+                document.body.style.backgroundImage = "url('" + images[++index] + "')";
+            }
+        }
+        function prevPic() {
+            if (index > 0) {
+                document.body.style.backgroundImage = "url('" + images[--index] + "')";
+            }
+        } 
+        function startSlide() {
+            slideInterval = setInterval(nextPic, 2000);
+        }
+        function stopSlide() {
+            clearInterval(slideInterval);
+        }
+    </script>
+</body>
+
+</html>

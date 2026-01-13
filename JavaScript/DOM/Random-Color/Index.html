@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div onclick="randomColor()" id="mo">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, fuga nam culpa, hic rerum blanditiis quia cum
+            dolorum accusantium sequi sunt, ea corrupti obcaecati! Expedita sit adipisci numquam similique assumenda
+            sunt ut nobis ipsum laboriosam molestias quam, praesentium quisquam nulla quis impedit suscipit corrupti
+            mollitia totam rerum incidunt. Cumque, fugiat.</p>>
+    </div>>
+    <script >
+        var div = document.getElementById("mo");
+        function randomColor() {
+            var letters = '0123456789ABCDEF'; // hex for colors
+            var color = '#'; // start of hex color
+            for (var i = 0; i < 6; i++) { // 6 digits in hex color
+                color += letters[Math.floor(Math.random() * 16)];  // pick random (0-1) * 16 = [0-15] ===> index of letters
+            }
+            var div2=div.cloneNode(true); 
+            div2.style.backgroundColor = color;
+            document.body.append(div2);
+        }
+    </script>
+</body>
+
+</html>

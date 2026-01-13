@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div onhover="hoverfunc()">
+        <img id="m2" src="./marble2.jpg" class="m">
+        <img src="./marble1.jpg" class="m">
+        <img src="./marble1.jpg" class="m">
+        <img src="./marble1.jpg" class="m">
+        <img src="./marble1.jpg" class="m">
+    </div>
+    <script>
+        var index = 0;
+        var marbles = document.getElementsByClassName('m');
+        var timer;
+
+        function move() {
+            marbles[index].src = "./marble1.jpg";
+            index = (index + 1) % marbles.length;
+            marbles[index].src = "./marble2.jpg";
+        }
+
+        function start() {
+            timer = setInterval(move, 1000);
+        }
+
+        function stop() {
+            clearInterval(timer);
+        }
+
+        for (let i = 0; i < marbles.length; i++) {
+            marbles[i].onmouseover = stop;
+            marbles[i].onmouseout = start;
+        }
+
+        start();  // always run
+    </script>
+</body>
+
+</html>
