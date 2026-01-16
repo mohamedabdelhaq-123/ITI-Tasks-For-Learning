@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library id="LIB001">
+
+    <location country="Egypt"/>
+    
+    <description>
+        <![CDATA[ This is a library ]]>  <!--Content inside CDATA is not parsed as XML-->
+    </description>
+
+    <librarian >
+        <name>Mo Abdelhaq</name>
+    </librarian>
+
+    <books>
+
+        <book isbn="123456">
+            <title>Atomic Habits</title>
+            <author>James Clear</author>
+
+            <preface>
+                <![CDATA[ This book is a Book ]]>
+            </preface>
+
+            <parts>
+
+                <part number="1">
+                    <title>Principles</title>
+
+                    <chapters>
+                        <chapter number="1">
+
+                            <title>Introduction</title>
+
+                            <summary>
+                                <![CDATA[This chapter is introduction  ]]>
+                            </summary>
+
+                            <sections>
+                                <section id="1.1">
+                                    <content>
+                                        <![CDATA[ Clean code should be readable and simple. ]]>
+                                    </content>
+                                </section>
+                            </sections>
+
+                        </chapter>
+
+                    </chapters>
+
+                </part>
+
+            </parts>
+
+        </book>
+
+    </books>
+
+</library>

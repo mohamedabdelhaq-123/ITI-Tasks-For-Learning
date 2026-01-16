@@ -1,0 +1,24 @@
+{
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.project.referencedLibraries": [
+        "ExternalLibraries/gson-2.10.1.jar",
+        "ExternalLibraries/jakarta.json-api-2.1.3.jar",
+        "ExternalLibraries/javax.json.bind-api-1.0.jar",
+        "ExternalLibraries/javax.json-1.1.4.jar",
+        "ExternalLibraries/javax.json-api-1.1.4.jar",
+        "ExternalLibraries/parsson-1.1.5.jar",
+        "ExternalLibraries/yasson-1.0.9.jar",
+        "/home/moabdelhaq/ITI Data/XML-JSON/ExternalLibraries/yasson-1.0.9.jar",
+        "/home/moabdelhaq/ITI Data/XML-JSON/ExternalLibraries/jakarta.json-api-2.1.3.jar",
+        "/home/moabdelhaq/ITI Data/XML-JSON/ExternalLibraries/javax.json-1.1.4.jar",
+        "/home/moabdelhaq/ITI Data/XML-JSON/ExternalLibraries/javax.json-api-1.1.4.jar",
+        "/home/moabdelhaq/ITI Data/XML-JSON/ExternalLibraries/gson-2.10.1.jar",
+        "/home/moabdelhaq/ITI Data/XML-JSON/ExternalLibraries/javax.json.bind-api-1.0.jar",
+        "/home/moabdelhaq/ITI Data/XML-JSON/ExternalLibraries/parsson-1.1.5.jar"
+    ],
+    "java.project.sourcePaths": [
+        "DEMO_GSON",
+        "DEMO_JSONB",
+        "ExternalLibraries"
+    ]
+}

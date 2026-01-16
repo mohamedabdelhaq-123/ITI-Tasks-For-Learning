@@ -1,0 +1,30 @@
+{
+    "LibraryID": "LIB001",
+    "Location": "Egypt",
+    "Description": "This is a Library",
+    "Librarian": "Mohamed Abdelhaq",
+    "Books": [
+        {
+            "ISBN": 123,
+            "Title": "Atomic Habits",
+            "Author": "James Clear",
+            "Preface": "This book is a book",
+            "Parts": [
+                {
+                    "Title": "Principles",
+                    "Chapters": [
+                        {
+                            "Title": "Introduction",
+                            "Summary": "This is a Summary",
+                            "Sections": [
+                                {
+                                    "Content": "Paragraph"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
