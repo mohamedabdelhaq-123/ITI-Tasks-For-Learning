@@ -1,0 +1,142 @@
+
+// cursor: object references(points) to returned doc by query, it can retreive one by one and apply methods
+
+
+ccursor=db.instructors.find(); // ref is stored + show output
+get all data 
+
+let ccursor=db.instructors.find(); // ref is stored only
+
+
+/*************************************Iterate on Cursor************************/
+
+1.
+let cursorr=db.momo.find();
+cursor
+{
+  _id: ObjectId('6979b2d72020937718149b8a'),
+  name: 'MO'
+}
+{
+  _id: ObjectId('6979b9ef2020937718149b8b'),
+  name: 'MO'
+}
+{
+  _id: 22,
+  name: 'MOmo'
+}
+
+
+
+2. 
+let cursor=db.instructors.find();
+cursor.next();           // access next doc to iterate one by one
+{
+  _id: 1,
+  firstName: 'noha',
+  lastName: 'hesham',
+  age: 21,
+  salary: 3500,
+  courses: [ 'js', 'mvc', 'signalR', 'expressjs', 'jquery' ],
+  active: true,
+  fullAddress: { city: 'cairo', street: 10, building: 8 },
+  address: { street: 20 }
+}
+cursor.next() // type again so get the next one
+{
+  _id: 2,
+  firstName: 'mona',
+  lastName: 'ahmed',
+  age: 21,
+  salary: 3600,
+  courses: [ 'es6', 'mvc', 'signalR', 'expressjs' ],
+  active: true,
+  fullAddress: { city: 'cairo', street: 20, building: 8 }
+}
+
+
+3. 
+cursor.forEach((el)=> print(el)); // loop on the cursor
+{
+  _id: 3,     // NOTE: the cursor while using is incremental
+  firstName: 'mazen',
+  lastName: 'mohammed',
+  age: 21,
+  salary: 6540,
+  courses: [ 'asp.net', 'mvc', 'jquery' ],
+  active: true,
+  fullAddress: { city: 'Ismailia', street: 10, building: 8 }
+}
+{
+  _id: 4,
+  firstName: 'badr',
+  lastName: 'ahmed',
+  age: 22,
+  salary: 5550,
+  courses: [ 'sqlserver', 'mvc', 'signalR', 'asp.net' ],
+  active: true,
+  fullAddress: { city: 'cairo', street: 10, building: 8 }
+}
+...etc NOW===> cursor.next() is null (once cursor reaches the end it expires)
+
+
+4.
+
+let cursor=db.instructors.find(); // new cursor
+let arr=cursor.toArray();
+arr[0];
+{
+  _id: 1,
+  firstName: 'noha',
+  lastName: 'hesham',
+  age: 21,
+  salary: 3500,
+  courses: [ 'js', 'mvc', 'signalR', 'expressjs', 'jquery' ],
+  active: true,
+  fullAddress: { city: 'cairo', street: 10, building: 8 },
+  address: { street: 20 }
+}
+
+
+5.  
+
+let cursor=db.instructors.find().toArray(); // new cursor
+noha=cursor[0];
+{
+  _id: 1,
+  firstName: 'noha',
+  lastName: 'hesham',
+  age: 21,
+  salary: 3500,
+  courses: [ 'js', 'mvc', 'signalR', 'expressjs', 'jquery' ],
+  active: true,
+  fullAddress: { city: 'cairo', street: 10, building: 8 },
+  address: { street: 20 }
+}
+
+
+/****************************************** Methods ********************************/
+
+
+cursor.count() // count from 1 normally ret. total size 
+
+db.instructors.find().limit(10).count()      
+// from MongoDB v4.4, behaviour of this query changed
+//old behaviour: o/p(12)  designed to return the total count of documents in the collection that match the find() query, regardless of the effects of skip() and limit().
+// now:          o/p(10)  respects skip() and limit()
+
+cursor.size() // count doc. and respect any limit() or skip()
+
+cursor.limit() // limit docs
+
+db.instructors.find().sort({_id:1}) // sort by id asc if (_id:-1) so desc
+
+let cursor=db.instructors.find(); // new cursor
+cursor.isClosed(); // boolean ret.
+False
+cursor
+// output to expire the cursor
+cursor.isClosed()
+true
+
+cursor.skip(1); // skip first doc

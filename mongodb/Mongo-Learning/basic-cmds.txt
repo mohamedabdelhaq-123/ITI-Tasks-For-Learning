@@ -1,0 +1,102 @@
+show dbs  ===  show databases // To see the list of databases available to you on the server
+ITI         72.00 KiB
+admin       40.00 KiB
+config     108.00 KiB
+inventory   17.93 MiB
+local       72.00 KiB
+
+use ITI // switch to iti db or create new 
+already on db ITI
+====> DB naming convenitions: case sens.- no special char only( _ and - ) - 0> && < 64 chars - no space
+
+db // show current database name
+ITI
+
+show collections === show tables // show all collections in my ITI ddb
+instructors
+
+
+show logs // display accessible logger names
+[
+  'global',
+  'startupWarnings'
+]
+
+show users // only lists the people who have (specific usernames and passwords created inside that database). Since you haven't run a command to register yourself yet, the list is empty.
+[]
+
+Therefore:
+
+
+db.createUser({
+  user: "your_username",
+  pwd: "your_password",
+  roles: [ { role: "readWrite", db: "your_database_name" } ]
+})
+{ ok: 1 }  // success message ok (field for cmd execution health) : number (1/True or 0/False)
+
+
+
+show users // after user creation
+[
+  {
+    _id: 'ITI.your_username',
+    userId: UUID('5726190b-d905-47ae-9715-d10549a2ce46'),
+    user: 'your_username',
+    db: 'ITI',
+    roles: [
+      {
+        role: 'readWrite',
+        db: 'your_database_name'
+      }
+    ],
+    mechanisms: [
+      'SCRAM-SHA-1',
+      'SCRAM-SHA-256'
+    ]
+  }
+]
+
+
+// Mongodb automatic index on _id field
+// if _id not assigned >> mongo automatically make an id (ObjectId) "Primary key"
+// Maximum BSON document size: 16MB
+====> naming convenitions for docs:
+1. _id (number/string/ObjectId) >>> unique and immutable
+
+db.momo.insertOne({"name":"MOmo",_id:22});
+{
+  acknowledged: true,
+  insertedId: 22
+}
+
+db.momo.insertOne({"name":"MOmo",_id:22});
+MongoServerError: E11000 duplicate key error collection: mo.momo index: _id_ dup key: { _id: 22 }
+
+2. {price: 12} / {"price": 12} 
+"price\0name">>> error
+3. "$price" / "first.name" >>> avoid $ is for operators
+
+
+
+
+
+/****************************************************************************/
+
+=====> DataTypes: for values
+
+strings
+int 32 or 64 signed
+double
+decimal 16 byte ===> NumberDecimal("100.55");
+boolean
+null
+array []
+object {}
+ObjectId // hexadecimal 12bytes(4=>timestamp,3=> machine id, 2=>processor id,3=>counter)
+undefined
+binary==> "10101010"
+date 64 bit
+regex 
+timestamp===> Timestamp(23243,1) // updated
+Minkey & MaxKey // act like -ve infinity and +ve infinity

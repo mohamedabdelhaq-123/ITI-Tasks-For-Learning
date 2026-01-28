@@ -1,0 +1,187 @@
+// Create Read Update Delete
+
+/***************************************** Create ************************************/
+====> DataBase:
+
+use newDbName; // create new db if the name not presented else get the presented db
+NOTE: the db won't appear in show databases list until you add doc in a collection
+
+====> collection:
+
+db.createCollection("Students"); // create collection (grp of docs)
+{ ok: 1 }
+
+show collections
+instructors
+Students   // new collection
+
+or::
+
+db.supervisors.insertOne({name:"mahmoud Helmy"}); // create collection by creating a document in a supervisor(new name)
+{
+  acknowledged: true,
+  insertedId: ObjectId('697936272a598830cf7b2075')
+}
+
+show collections
+instructors
+Students
+supervisors // new collection
+
+
+========> documents:
+
+db.instructors.insertMany(
+  [{doc},{doc}],
+  {writeConcern: doc}, //  options for writing 
+  {ordered: boolean}   //  if false => doesn't stop inserting remaining doc even if one insertion fails >> default true
+  )
+
+  1. who factor    ==> [w: 1/"majority"]        record data to primary node / all nodes in the replica >>>> default w:1
+  2. joranl factor ==> [j: true/false]           db wait until data is in journal (disk)                 >>> default false
+  3. patience factor==> [wtimeout: time in ms]   if ack toolong,k too  db return error (no infinity loop)  >>> default 0
+
+ex:
+db.student.insertOne(
+  { Name: "John", Marks: 420 },
+  { writeConcern: { w: 1, j: true, wtimeout: 5000 } }
+)
+
+/*/*/*/*/*/*/*/
+
+db.instructors.insertOne({name:"MO"}); // insert on doc inside collection
+{
+  acknowledged: true,   
+  insertedId: ObjectId('6979320f2a598830cf7b2072')
+}
+
+db.instructors.insertMany({name:"MO00"},{name:"00oM"}); // insert on doc inside collection
+===> MongoInvalidArgumentError: Argument "docs" must be an array of documents
+
+
+db.instructors.insertMany([{name:"MO00"},{name:"00oM"}]); // must be array of objects
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('697932832a598830cf7b2073'),
+    '1': ObjectId('697932832a598830cf7b2074')
+  }
+}
+
+db.instructors.inser(); // deprecated act as one and many
+
+/***************************************** Read ************************************/
+
+({filter},      // search depending on what === where in SQL
+{projection})   // show me what? === Select 
+
+
+db.instructors.find();// show all docs in collection
+
+db.instructors.findOne(); // show one doc 
+
+db.instructors.findAndModify();  // remove,update,upsert, collation, arrayFilters, writeConcern, sort, new
+ex:
+db.instructors.findAndModify({
+    query:{name:"MO"},
+    update:{$inc:{score:4}}
+})
+
+db.instructors.findOneAndDelete(); // find depending on filter and return the deleted one
+
+db.instructors.findOneAndReplace(); // find depending on filter and return the replaced one
+/***************************************** Update ************************************/
+
+({filter},   // search depending on what === where in SQL
+{updated data},        // show me what? === Select 
+{ writeConcern:doc,  
+  upsert: boolen,  // if true => create new doc if no doc match the criteria
+  multi: boolean,  // if true => update all doc that match the criteria >> default update first one
+  arrayFilters: [fiterdoc]  // to filter in arr inside doc
+  collation:doc,    //  set of rules db use to compare and sort like: language, case senstivity,etc
+})
+
+db.instructors.updateOne(); // update single doc match filter
+ex:
+db.instructors.updateOne({firstName:"noha",lastName:"hesham"},{$unset:{"courses":""}})
+// unset courses field in noha doc
+
+
+Q. Write a query to update the score of  student 1 "Maths" grade to 85 using an array filter in the "students" collection
+
+db.students.udpateOne(
+  {_id:1}, // filteration
+  {$set: 
+    // {score: 85} this is wrong bec score is in grades arr
+    // {"grades.score": 85}  this is wrong dot notation used with field obj ex: grades:{"score":87,"subject":"Math"};
+    // {"grades[i].score": 85}  how to loop 
+     {"grades.$[placeholder].score": 85}  // Use $[identifier] syntax and define the placeholder at end of query
+  },       // now need to replace the placeholder with Math and filter again in array
+
+  {
+    arrayFilters:
+      [
+        // {"placeholder": "Maths"} wrong the placeholder is the whole obj need to jump in
+        {"placeholder.subject": "Mahts"}
+
+      ]
+  }
+)
+
+
+db.instructors.updateMany(); // update mult. doc match filter an one also, apply atomicity in updating
+
+db.instructors.replaceOne(); // replace single doc. match filter 
+
+ex:
+db.Students.replaceOne({},{Name:"MOHamed"}) replaced the first doc
+
+db.Students.replaceOne({Name:"MOHamed"},{AGE: 55}) // replaced the doc that has mohamed with only age: 55
+
+db.Students.replaceOne({Name:"Karim"},{AGE: 55}, {upsert:true}) 
+// searched for Karim to replace with age:55 (not found), since upsert .Therefore create new doc with age:55.
+
+
+
+db.student.update(); // deprecated
+
+
+/***************************************** Delete ************************************/
+
+=======> DataBase:  
+use ITI  //  switch to db desired to be deleted
+db.dropDatabase(); 
+{"dropped":"ITI", "ok": 1} // successfully deleted db permanentaly
+>>>> before dropping backup your data + check your switched to the right one + Check your user permissions (has admin priv. to drop?) + no Impact on other dbs
+
+========> collection:
+db.student.drop(); //drop collection
+{ "ok" : 1 } // drop confirmed
+
+
+=======> docs:
+collation
+writeConcern
+hint
+
+db.instructors.deleteOne({filter}); // delete single doc match filter
+ex:
+db.Students.deleteOne(); // error
+MongoshInvalidInputError: [COMMON-10001] Missing required argument at position 0 (Collection.deleteOne)
+db.Students.deleteOne({}) // need {} and deleted first doc
+
+/*/*/*/*/*/*/
+
+db.instructors.deleteMany({filter});  // delete mult. doc match filter
+
+ex:
+db.instructors.deleteMany({});  // delete whole collection
+db.instructors.deleteMany({_id:{$gt:5}}); // delete first 5 docs
+
+Steps to avoid errors:
+1. test the filter by find before deletion
+2. in large datasets delete by index bec deletion may be slow
+3. if capped collection so can't delete from it 
+capped collection==> fixed size, circular FIFO (overwrite on old docs at max size),, used in logs (Oplog)
+
+
