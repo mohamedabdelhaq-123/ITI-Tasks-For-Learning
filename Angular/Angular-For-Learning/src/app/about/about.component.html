@@ -1,0 +1,46 @@
+<section class="about-section py-5" id="about">
+  <div class="container">
+    <h2 class="text-center mb-5 section-title">About Me</h2>
+    
+    
+    <div class="row mb-5">
+      <div class="col-md-10 mx-auto">
+        <div class="bio-card p-4">
+          <h4 class="mb-3">Who I Am</h4>
+          <p class="lead">{{ bio }}</p> 
+          
+          
+          <div class="text-center mt-4">
+            <a [href]="cvDownloadLink" download class="btn btn-success btn-lg">
+              <i class="bi bi-download"></i> Download My CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class=" text-center ">
+      <div class=" mb-4">
+        <div class="info-card h-100">
+          <h3 class="mb-4">
+            <i class="bi bi-mortarboard-fill"></i> Education
+          </h3>
+          
+
+          <!-- another syntax track by id -->
+          <div class="timeline-item" *ngFor="let edu of education">  
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h5>{{ edu.degree }}</h5>
+              <h6 class="text-muted">{{ edu.institution }}</h6>
+              <p class="mb-1"><small>{{ edu.year }}</small></p>
+              <p>{{ edu.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+    </div>
+  </div>
+</section>

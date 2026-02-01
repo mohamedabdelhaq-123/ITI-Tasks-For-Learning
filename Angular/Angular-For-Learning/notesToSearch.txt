@@ -1,0 +1,21 @@
+what is angular routing?
+
+
+
+
+when and where to link cdn of bootstrap?
+
+
+
+
+what is @component and RouterOutlet and the data in them? 
+Aim and location of @angular/router, @angular/common & @angular/core ?
+
+other syntax of for loop and the versions of it?
+
+
+
+
+what is rxgs
+
+

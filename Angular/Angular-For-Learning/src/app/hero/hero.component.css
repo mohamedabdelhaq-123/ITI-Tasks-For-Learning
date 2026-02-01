@@ -1,0 +1,21 @@
+.hero-section {
+  background: linear-gradient(135deg, #2d0946 0%, #764ba2 100%);
+  color: white;
+}
+
+.text-primary {
+  color: #eee128 !important;
+}
+
+.btn-primary {
+  background-color: #eee128;
+  border: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #ffed4e;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}

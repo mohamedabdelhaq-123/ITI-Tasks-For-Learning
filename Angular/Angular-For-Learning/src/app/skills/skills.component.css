@@ -1,0 +1,22 @@
+.skills-section {
+  background-color: #f8f9fa;
+}
+
+.skill-item h5 {
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 600;
+}
+
+.progress {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 1s ease;
+}
