@@ -1,0 +1,7 @@
+<div>
+  <!-- <app-todo-form (emitData)="userItem=$event"></app-todo-form> -->
+   <app-todo-form (emitData)="receiveItems($event)"></app-todo-form>
+  <!-- <h2>{{userItems}}</h2> -->
+  <app-todo-list [todoListItems]="userItems" (deleteEvent)="removeItem($event)"></app-todo-list>
+  
+</div>

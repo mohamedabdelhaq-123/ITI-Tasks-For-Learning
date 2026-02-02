@@ -6,9 +6,14 @@ import { SkillsComponent } from './skills/skills.component';
 import { projectsComponent } from './porjects/porjects.component';
 import { FooterComponent } from './footer/footer.component';
 
-@Component({   // decorate the class as a component
+  //  if was @componet  so decorate the class as a component ,
+  //  if was @directive so decorate class as directive ,
+  //  if was @ngModule so decorate class as module
+
+
+@Component({   // decorate the class as a component , if was @directive so decorate class as directive , if was @ngModule so decorate class as module
   selector: 'app-root',  // name of the tag (directive) to select the component(way of displaying component) to replace with tag component
-  standalone: true,   // doesn't need ngmodule (prev. way before v17) every component is indepenet now
+  standalone: true,   // doesn't need ngmodule (prev. way before v17) every component is indepenet now, standalone recommended from v14
   imports: [      // need to import any component,module, directive  i use here
     
     HeroComponent,   // imported from hero , etc..
@@ -22,6 +27,6 @@ import { FooterComponent } from './footer/footer.component';
     // styles: 'p{color: red}'  ===> can write all .css in here
   styleUrl: './app.component.css'       //this is the easy way:: path of component .css
 })
-export class AppComponent {   // class decorated (act as component)
+export class AppComponent {   // class decorated (act as component) according as the decorator type
   title = 'my-portfolio';
 }

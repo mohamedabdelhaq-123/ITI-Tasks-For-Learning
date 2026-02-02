@@ -1,0 +1,33 @@
+<h1 class="text-center fw-bold">USERS</h1>
+<div class="user-list-container">
+  
+  @for (user of userList; track $index) {
+    <div class="user-card">
+      
+      <img [src]="user.profilePic" [alt]="user.userName">
+
+      @if (user.role === 'admin') {
+        <p class="badge text-bg-danger">Admin</p>
+      }
+      @else if (user.role === 'moderator') 
+      {
+        <p class="badge text-bg-warning">Moderator</p>
+      }
+      @else { 
+        <p class="badge text-bg-success">User</p>
+      }
+      
+      <div class="user-info">
+        <h3>{{ user.userName }}</h3>
+        <p>Email:{{ user.email }}</p>
+        <p>Phone:{{ user.phoneNumber }}</p>
+        <p>Birthdate:{{ user.birthdate }}</p>
+      </div>
+      
+     
+      
+    </div>
+  } @empty {
+    <p class="no-users">No users found</p>
+  }
+</div>

@@ -1,0 +1,10 @@
+<div class="todo-list bg-success text-center">
+    <h2>Todo List</h2>
+     @for ( item of todoListItems; track $index; )
+    {
+        <span>{{item}}</span>
+        <button (click)="remove($index)">X</button>
+        <br><hr>
+    } 
+    
+</div>
