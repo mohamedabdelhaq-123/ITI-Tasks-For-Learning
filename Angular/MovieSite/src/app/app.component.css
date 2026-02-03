@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* make host take full viewport height */
+  background-color: #FAFAF7; /* warm off-white, easy on eyes */
+  color: #2E2E2E; /* default text color for readability */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* main content area */
+main {
+  flex: 1; /* take all available vertical space between navbar & footer */
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto; /* center horizontally */
+  width: 100%;
+}
+
+/* optional: smooth scrolling for long pages */
+html {
+  scroll-behavior: smooth;
+}

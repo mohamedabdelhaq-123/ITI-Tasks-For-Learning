@@ -1,0 +1,92 @@
+/* --- Variables --- */
+:host {
+  --bg-dark: #121212;
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+  --neon-purple: #8b5cf6;
+  --neon-red: #ff003c;
+  --neon-blue: #00f0ff;
+}
+
+.error-container {
+  background-color: var(--bg-dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden; /* Contains the glitch effect */
+}
+
+/* 1. The Glitchy 404 */
+.error-code {
+  font-size: 8rem;
+  font-weight: 900;
+  color: var(--text-main);
+  position: relative;
+  letter-spacing: -5px;
+  margin: 0;
+  
+  /* The Glitch Animation */
+  animation: glitch-skew 1s infinite linear alternate-reverse;
+}
+
+/* Creating the Red/Blue layers */
+.error-code::before,
+.error-code::after {
+  content: attr(data-text); /* Copies the "404" text */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.error-code::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--neon-red);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.error-code::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--neon-blue);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+/* 2. Text Styling */
+.error-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-top: 10px;
+}
+
+.error-text {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* 3. Button (Reused) */
+.btn-glow {
+  display: inline-block;
+  background-color: var(--neon-purple);
+  color: white;
+  text-decoration: none;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-glow:hover {
+  background-color: #7c3aed;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+  transform: translateY(-3px);
+}
+

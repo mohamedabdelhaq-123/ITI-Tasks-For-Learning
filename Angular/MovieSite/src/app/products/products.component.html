@@ -1,0 +1,42 @@
+<div class="movie-grid">
+  @for (product of products; track $index) {
+    <div class="movie-card">
+      
+<div class="poster-wrapper" [routerLink]="'/product/' + product.id">       
+   <img [src]="product.image" [alt]="product.name" class="movie-img" />
+        <div class="rating-badge">
+          ⭐ {{product.rating}}
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div class="header-row">
+          <h3 class="title" [title]="product.name">{{product.name}}</h3>
+          <span class="price">${{product.price}}</span>
+        </div>
+        
+        <p class="genre">{{product.category}}</p>
+        
+        <div class="footer-row">
+          <span class="stock-status" [ngClass]='{" text-danger ":product.stock===0, "text-success":product.stock>0}'>
+          @if(product.stock!==0)
+          {
+            
+            {{ product.stock + ' left'}}
+          
+          }
+          @else {
+            Sold Out
+          }
+
+          </span>
+          
+          <button class="btn-glow">
+            Add +
+          </button>
+        </div>
+      </div>
+
+    </div>
+  }
+</div>

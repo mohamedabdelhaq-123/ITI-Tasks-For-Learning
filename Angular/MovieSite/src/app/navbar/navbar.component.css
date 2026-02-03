@@ -1,0 +1,73 @@
+/* --- Navbar Variables (Matching the Grid) --- */
+:host {
+  --nav-bg: rgba(30, 30, 30, 0.85); /* Semi-transparent dark gray */
+  --neon-purple: #8b5cf6;
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+}
+
+/* 1. Main Navbar Container */
+.movie-navbar {
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(12px); /* The modern "Glass" effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky; /* Optional: Sticks to top while scrolling */
+  top: 0;
+  z-index: 1000;
+}
+
+
+/* 1. The Main Text */
+.navbar-brand {
+  font-family: 'Inter', sans-serif; /* or any bold sans-serif font */
+  font-weight: 900;       /* Extra Bold */
+  letter-spacing: -1px;   /* Tight letter spacing looks more modern */
+  font-size: 1.8rem;      /* Make it big */
+  color: #ffffff !important;
+  margin-left: 9%;
+}
+
+/* 2. The Plus Sign (+) */
+.brand-plus {
+  color: #8b5cf6;         /* Your Neon Purple Variable */
+  font-style: italic;     /* Slight tilt makes it dynamic */
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.8); /* glowing effect */
+  margin-left: 2px;
+}
+
+/* 3. Links */
+.movie-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative; /* For the glow effect */
+}
+
+.movie-link:hover {
+  color: var(--text-main) !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* White glow on hover */
+}
+
+/* 4. Active State (Neon Glow) */
+.active-link {
+  color: var(--neon-purple) !important;
+  font-weight: 600;
+  /* Glowing Text Effect */
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.6); 
+}
+
+/* 5. Toggler (Mobile Menu Icon) */
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+.navbar-toggler-icon {
+  filter: invert(1); /* Ensures the hamburger icon is white */
+}
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 2px var(--neon-purple); /* Purple focus ring */
+}
+
+.test{
+  margin-right: 9%;
+}

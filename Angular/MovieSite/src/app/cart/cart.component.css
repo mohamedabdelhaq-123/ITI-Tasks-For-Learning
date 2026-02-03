@@ -1,0 +1,66 @@
+/* Import variables if not using global styles, otherwise rely on styles.css */
+:host {
+  --bg-dark: #121212;
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+  --neon-purple: #8b5cf6;
+}
+
+.cart-container {
+  background-color: var(--bg-dark);
+  min-height: 100vh; /* Full screen height */
+  display: flex;     /* Flexbox to center everything */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.empty-state {
+  text-align: center;
+  max-width: 500px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.empty-icon {
+  font-size: 6rem; /* Big Emoji */
+  margin-bottom: 24px;
+  /* Floating animation */
+  animation: float 3s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.2); /* Subtle glow behind ghost */
+}
+
+.empty-title {
+  color: var(--text-main);
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+.empty-text {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+/* Reusing your Neon Button style */
+.btn-glow {
+  display: inline-block;
+  background-color: var(--neon-purple);
+  color: white;
+  text-decoration: none;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-glow:hover {
+  background-color: #7c3aed;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+  transform: translateY(-3px);
+}
+

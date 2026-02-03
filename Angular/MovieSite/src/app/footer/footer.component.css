@@ -1,0 +1,43 @@
+/* --- Footer Variables --- */
+:host {
+  --bg-dark: #121212;
+  --footer-bg: #0a0a0a; /* Slightly darker than main bg for contrast */
+  --neon-purple: #8b5cf6;
+  --text-muted: #a1a1aa;
+}
+
+.movie-footer {
+  background-color: var(--footer-bg);
+  color: var(--text-muted);
+  
+  /* The "Vibe" Element: A glowing top border */
+  border-top: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 -4px 20px rgba(139, 92, 246, 0.1); 
+  
+  margin-top: auto; /* Pushes footer to bottom if content is short */
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* Styling the "POV" part to look like the logo */
+strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Reusing the neon plus sign style */
+.brand-plus {
+  color: var(--neon-purple);
+  font-style: italic;
+  font-weight: 900;
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
+}
+
+.divider {
+  margin: 0 8px;
+  color: #333; /* Dark divider */
+}
