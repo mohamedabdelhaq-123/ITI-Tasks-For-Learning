@@ -1,8 +1,8 @@
 <div class="movie-grid">
   @for (product of products; track $index) {
-    <div class="movie-card">
+    <div class="movie-card" [routerLink]="'/product/' + product.id">
       
-<div class="poster-wrapper" [routerLink]="'/product/' + product.id">       
+<div class="poster-wrapper" >       
    <img [src]="product.image" [alt]="product.name" class="movie-img" />
         <div class="rating-badge">
           ⭐ {{product.rating}}
