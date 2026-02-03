@@ -1,4 +1,4 @@
 [build]
   base = "Angular/MovieSite"
-  command = "npm install && npm run build"
+  command = "npm install && ng build --output-path=dist/book-site && ls -la dist/book-site"
   publish = "dist/book-site"
