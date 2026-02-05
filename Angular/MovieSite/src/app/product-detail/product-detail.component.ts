@@ -9,6 +9,7 @@ import {products,Iproducts}  from "../productsArr"
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
+
 export class ProductDetailComponent {
   activatedRoute:number = inject(ActivatedRoute).snapshot.params['id'];
 

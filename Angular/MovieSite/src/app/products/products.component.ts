@@ -19,9 +19,4 @@ export class ProductsComponent {
 
 
 }
- // little prince, Dream of the Red Chamber
-// And Then There Were None, The 7 Habits of Highly Effective People
-// Don’t Sweat the Small Stuff…, The Power of Positive Thinking
-// The Secret, The Celestine Prophecy , The Power of Habit
-// The Catcher in the Rye,Pride and Prejudice, The Girl with the Dragon Tattoo, The Road
 

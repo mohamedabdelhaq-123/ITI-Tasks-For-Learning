@@ -6,16 +6,21 @@
       <p class="text-muted">Join the club.</p>
     </div>
 
-      
+    <form  [formGroup]="myRegisterForm">  
       <div class="mb-3">
-        <label class="form-label text-light">Full Name</label>
+        <label class="form-label text-light">Name</label>
         <input 
           type="text" 
           class="form-control form-control-dark" 
-          placeholder="John Doe"
+          placeholder="Mo Abdelhaq"
           name="name"
-          required
+          formControlName="name"
         >
+        <div class="validation">
+        @if (myRegisterForm.get("name")?.touched && myRegisterForm.get("name")?.getError("required")) {
+          <p class="text-danger">Name is Required</p>
+        }
+        </div>
       </div>
 
       <div class="mb-3">
@@ -25,8 +30,36 @@
           class="form-control form-control-dark" 
           placeholder="name@example.com"
           name="email"
-          required
+          formControlName="email"
         >
+        <div class="validation">
+        @if (myRegisterForm.get("email")?.touched && myRegisterForm.get("email")?.getError("required")) {
+          <p class="text-danger">Email is Required</p>
+        }
+        @else if(myRegisterForm.get("email")?.getError("email")){
+            <p class="text-danger"> Wrong Email</p>
+        }
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-light">User Name</label>
+        <input 
+          type="text" 
+          class="form-control form-control-dark" 
+          placeholder="MarcelloMammia🤌🏻"
+          name="name"
+          formControlName="username"
+        >
+        <div class="validation">
+        @if (myRegisterForm.get("username")?.touched && myRegisterForm.get("username")?.getError("required")) {
+          <p class="text-danger">User Name is Required</p>
+        }
+        @else if( myRegisterForm.get("username")?.getError("pattern"))
+        {
+            <p class="text-danger">No White Spaces</p>
+        }
+        </div>
       </div>
 
       <div class="mb-3">
@@ -36,8 +69,18 @@
           class="form-control form-control-dark" 
           placeholder="••••••••"
           name="password"
-          required
+          formControlName="password"
         >
+        <div class="validation">
+        @if (myRegisterForm.get("password")?.touched && myRegisterForm.get("password")?.getError("required")) {
+          <p class="text-danger">Password is Required</p>
+        }
+        @else if(myRegisterForm.get("password")?.getError("pattern"))
+        {
+          <p class="text-danger">Wrong Password</p>
+
+        }
+        </div>
       </div>
       
       <div class="mb-4">
@@ -47,16 +90,22 @@
           class="form-control form-control-dark" 
           placeholder="••••••••"
           name="confirmPassword"
-          required
+         formControlName="confirmpass"
+          
         >
+        <div class="validation">
+        @if (myRegisterForm.get("confirmpass")?.touched && !checkSame()) {
+          <p class="text-danger">Passwords Don't Match</p>
+        }
+        </div>
       </div>
 
-      <a routerLink="/products" class="btn btn-glow mb-3">Sign In</a>
+      <button routerLink="/products" class="btn btn-glow mb-3"  [disabled]="myRegisterForm.invalid">Register</button>
 
       <div class="text-center">
         <span class="text-muted">Already have an account? </span>
         <a routerLink="/login" class="auth-link">Log In</a>
       </div>
-    
+    </form >
   </div>
 </div>

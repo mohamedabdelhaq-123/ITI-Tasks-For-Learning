@@ -6,7 +6,7 @@
       <p class="text-muted">Welcome back.</p>
     </div>
 
-   
+   <form (ngSubmit)="submit(form)" #form="ngForm">
       <div class="mb-3">
         <label class="form-label text-light">Email</label>
         <input 
@@ -15,7 +15,13 @@
           placeholder="name@example.com"
           name="email"
           required
+          [(ngModel)]="user.userEmail"
+          #Uemail="ngModel"
+          (input)="getEmail(Uemail)"
         >
+        @if (Uemail.dirty && !checkRegex(Uemail.value)) {
+          <p class="text-danger">Wrong Email</p>
+        }
       </div>
 
       <div class="mb-4">
@@ -26,15 +32,18 @@
           placeholder="••••••••"
           name="password"
           required
+          [(ngModel)]="user.userPass"
+          #Upass="ngModel"
         >
       </div>
 
-      <a routerLink="/products" class="btn btn-glow mb-3">Sign In</a>
+      <button type="submit" routerLink="/products" class="btn btn-glow mb-3" [disabled]="form.invalid">Sign In</button>
 
       <div class="text-center">
         <span class="text-muted">New to POV+? </span>
         <a routerLink="/register" class="auth-link">Create Account</a>
       </div>
+   </form>  
     
   </div>
 </div>

@@ -104,3 +104,7 @@
   text-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
   text-decoration: none;
 }
+
+::placeholder{
+  color:rgba(238, 112, 255, 0.7)
+}
