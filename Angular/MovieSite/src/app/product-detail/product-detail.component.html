@@ -1,36 +1,38 @@
 <div class="detail-container">
 
-  
-
-  @if (product) {
+  @if (selectedMovie) {
     <div class="movie-content">
       
       <div class="poster-section">
         <div class="poster-wrapper">
-          <img [src]="product.image" [alt]="product.name" class="main-poster">
-          <img [src]="product.image" class="poster-blur" aria-hidden="true">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + selectedMovie.poster_path" 
+               [alt]="selectedMovie.title" 
+               class="main-poster">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + selectedMovie.poster_path" 
+               class="poster-blur" 
+               aria-hidden="true">
         </div>
       </div>
 
       <div class="info-section">
         
         <div class="movie-header">
-          <span class="badge-category">{{product.category}}</span>
-          <h1 class="movie-title">{{product.name}}</h1>
+          <span class="badge-category">Movie</span>
+          <h1 class="movie-title">{{selectedMovie.title}}</h1>
           
           <div class="meta-row">
-            <span class="rating">⭐ {{product.rating}} / 5</span>
+            <span class="rating">⭐ {{selectedMovie.vote_average}} / 10</span>
             <span class="divider">•</span>
-            <span class="brand">Dir. {{product.brand}}</span>
+            <span class="brand">{{selectedMovie.release_date}}</span>
           </div>
         </div>
 
         <div class="price-row">
-          <span class="price">${{product.price}}</span>
+          <span class="price">${{selectedMovie.price}}</span>
           
-          @if (product.stock > 0) {
+          @if (selectedMovie.stock && selectedMovie.stock > 0) {
             <span class="stock-badge in-stock">
-              <span class="dot"></span> {{product.stock}} available
+              <span class="dot"></span> {{selectedMovie.stock}} available
             </span>
           } @else {
             <span class="stock-badge out-stock">Sold Out</span>
@@ -39,29 +41,40 @@
 
         <div class="description-box">
           <h3>Synopsis</h3>
-          <p>{{product.description}}</p>
+          <p>{{selectedMovie.overview}}</p>
         </div>
 
         <div class="action-row">
-          <button class="btn btn-glow btn-lg" [disabled]="product.stock === 0">
+          <button class="btn btn-glow btn-lg" 
+                  [disabled]="!selectedMovie.stock || selectedMovie.stock === 0">
             Add to Cart <i class="bi bi-bag-plus-fill"></i>
           </button>
-          <a class="btn btn-outline" [href]="product.trailer">
-            Watch Trailer
-          </a>
+          
+          @if (trailerKey) {
+            <a class="btn btn-outline" 
+               [href]="'https://www.youtube.com/watch?v=' + trailerKey" 
+               target="_blank">
+              Watch Trailer
+            </a>
+          } @else {
+            <button class="btn btn-outline" disabled>
+              No Trailer Available
+            </button>
+          }
         </div>
+
 
       </div>
     </div>
   } @else {
-  <div class="error-state text-center">
-    <div class="error-icon">🎬</div>
-    <h2>Scene missing.</h2>
-    
-    <a routerLink="/products" class="btn btn-glow">
-      Back to Browse
-    </a>
-  </div>
-}
+    <div class="error-state text-center">
+      <div class="error-icon">🎬</div>
+      <h2>Scene missing.</h2>
+      
+      <a routerLink="/products" class="btn btn-glow">
+        Back to Browse
+      </a>
+    </div>
+  }
 
 </div>

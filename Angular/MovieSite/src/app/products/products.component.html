@@ -1,37 +1,36 @@
 <div class="movie-grid">
-  @for (product of products; track $index) {
-    <div class="movie-card" [routerLink]="'/product/' + product.id">
+  @for (movie of movies; track $index) {
+    <div class="movie-card" [routerLink]="'/product/' + movie.id">
       
-<div class="poster-wrapper" >       
-   <img [src]="product.image" [alt]="product.name" class="movie-img" />
+      <div class="poster-wrapper">       
+        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
+             [alt]="movie.title" 
+             class="movie-img" />
         <div class="rating-badge">
-          ⭐ {{product.rating}}
+          ⭐ {{movie.vote_average}}
         </div>
       </div>
 
       <div class="card-details">
         <div class="header-row">
-          <h3 class="title" [title]="product.name">{{product.name}}</h3>
-          <span class="price">${{product.price}}</span>
+          <h3 class="title" [title]="movie.title">{{movie.title}}</h3>
+          <span class="price">${{movie.price}}</span>
         </div>
         
-        <p class="genre">{{product.category}}</p>
+        <!-- <p class="genre">{{movie.}}</p> -->
         
         <div class="footer-row">
-          <span class="stock-status" [ngClass]='{" text-danger ":product.stock===0, "text-success":product.stock>0}'>
-          @if(product.stock!==0)
-          {
-            
-            {{ product.stock + ' left'}}
-          
-          }
-          @else {
-            Sold Out
-          }
-
+          <span class="stock-status" 
+                [ngClass]='{"text-danger": movie.stock === 0, "text-success": movie.stock && movie.stock > 0}'>
+            @if (movie.stock && movie.stock !== 0) {
+              {{ movie.stock + ' left'}}
+            } @else {
+              Sold Out
+            }
           </span>
           
-          <button class="btn-glow" routerLink="/usr" >
+          <button class="btn-glow" 
+                  routerLink="/cart">
             Add +
           </button>
         </div>
