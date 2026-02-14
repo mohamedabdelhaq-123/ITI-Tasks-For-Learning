@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "item": "Laptop",
+    "quantity": 10,
+    "category": "Electronics"
+  },
+  {
+    "id": 2,
+    "item": "Mouse",
+    "quantity": 50,
+    "category": "Accessories"
+  }
+]

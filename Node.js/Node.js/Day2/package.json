@@ -1,0 +1,13 @@
+{
+  "name": "lab2-http-server",
+  "version": "1.0.0",
+  "description": "HTTP server with inventory management",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["http", "server", "inventory"],
+  "author": "",
+  "license": "ISC"
+}
