@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Student Management System{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card">
+        <h2>Create an Account</h2>
+        
+        <form method="post" action="{% url 'school:register' %}">
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+            <div class="alert alert-error">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+            
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <div class="field-error">{{ field.errors }}</div>
+                {% endif %}
+                {% if field.help_text %}
+                <small class="help-text">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Register</button>
+        </form>
+        
+        <div class="login-help">
+            <p>Already have an account? <a href="{% url 'school:login' %}">Login here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .login-container { display: flex; justify-content: center; align-items: center; min-height: 70vh; padding: 2rem 1rem; }
+    .login-card { background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 2rem; width: 100%; max-width: 450px; }
+    .login-card h2 { margin-bottom: 1.5rem; text-align: center; color: #2c3e50; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #2c3e50; }
+    .form-group input { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; transition: border-color 0.2s; box-sizing: border-box; }
+    .form-group input:focus { outline: none; border-color: #2c3e50; box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1); }
+    .btn { width: 100%; padding: 0.75rem; border: none; border-radius: 4px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background-color 0.2s; }
+    .btn-primary { background-color: #2c3e50; color: white; }
+    .btn-primary:hover { background-color: #1e2b38; }
+    .alert { padding: 0.75rem; margin-bottom: 1rem; border-radius: 4px; border-left: 4px solid; }
+    .alert-error { background-color: #f8d7da; border-left-color: #dc3545; color: #721c24; }
+    .field-error { color: #dc3545; font-size: 0.85rem; margin-top: 0.4rem; }
+    .help-text { display: block; color: #6c757d; font-size: 0.8rem; margin-top: 0.4rem; }
+    .login-help { margin-top: 1.5rem; text-align: center; font-size: 0.9rem; }
+    .login-help a { color: #3498db; text-decoration: none; font-weight: 500;}
+    .login-help a:hover { text-decoration: underline; }
+</style>
+{% endblock %}

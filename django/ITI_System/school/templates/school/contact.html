@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Student Management System{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-card">
+        <div class="form-header">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you. Send us a message!</p>
+        </div>
+        
+        {% if success %}
+        <div class="alert alert-success">
+            Thank you for your message! We will get back to you shortly.
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+            <div class="alert alert-error">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+            
+            {{ form.as_p }}
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-container { display: flex; justify-content: center; align-items: center; min-height: 70vh; padding: 2rem 1rem; }
+    .form-card { background: white; border-radius: 12px; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); padding: 2rem; width: 100%; max-width: 600px; }
+    .form-header { text-align: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #f0f0f0; }
+    .form-header h1 { color: #2c3e50; margin-bottom: 0.5rem; font-size: 1.8rem; }
+    .form-header p { color: #7f8c8d; font-size: 0.9rem; }
+    form p { margin-bottom: 1.25rem; }
+    form label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #2c3e50; }
+    form input, form select, form textarea { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; transition: border-color 0.2s; box-sizing: border-box; }
+    form input:focus, form select:focus, form textarea:focus { outline: none; border-color: #2c3e50; box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1); }
+    .alert { padding: 0.75rem; margin-bottom: 1.5rem; border-radius: 4px; border-left: 4px solid; }
+    .alert-error { background-color: #f8d7da; border-left-color: #dc3545; color: #721c24; }
+    .alert-success { background-color: #d4edda; border-left-color: #28a745; color: #155724; font-weight: 500; text-align: center; }
+    .form-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #f0f0f0; }
+    .btn { padding: 0.6rem 1.2rem; border: none; border-radius: 6px; font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
+    .btn-primary { background-color: #2c3e50; color: white; }
+    .btn-primary:hover { background-color: #1e2b38; }
+    @media (max-width: 768px) {
+        .form-card { padding: 1.5rem; }
+        .form-actions { flex-direction: column; }
+        .btn { text-align: center; }
+    }
+</style>
+{% endblock %}

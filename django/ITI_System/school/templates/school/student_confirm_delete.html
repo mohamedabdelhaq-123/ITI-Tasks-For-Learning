@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Student - Student Management System{% endblock %}
+
+{% block content %}
+<div class="delete-container">
+    <div class="delete-card">
+        <div class="delete-header">
+            <h1>Delete Student</h1>
+            <div class="warning-icon">⚠️</div>
+        </div>
+        
+        <div class="delete-warning">
+            <p>Are you sure you want to delete <strong>{{ student.name }}</strong>?</p>
+            <p class="warning-text">This action cannot be undone. All data associated with this student will be permanently removed.</p>
+        </div>
+        
+        <div class="student-details">
+            <h3>Student Information:</h3>
+            <ul>
+                <li><strong>Name:</strong> {{ student.name }}</li>
+                <li><strong>Email:</strong> {{ student.email }}</li>
+                <li><strong>Age:</strong> {{ student.age }}</li>
+                {% if student.img %}
+                <li><strong>Image:</strong> <img src="{{ student.img.url }}" width="50" height="50" class="student-image"></li>
+                {% endif %}
+            </ul>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="delete-actions">
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                <a href="{% url 'school:student_list' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .delete-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+        padding: 2rem 1rem;
+    }
+    
+    .delete-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        width: 100%;
+        max-width: 500px;
+        text-align: center;
+    }
+    
+    .delete-header {
+        margin-bottom: 2rem;
+        position: relative;
+    }
+    
+    .delete-header h1 {
+        color: #e74c3c;
+        margin-bottom: 0.5rem;
+        font-size: 1.8rem;
+    }
+    
+    .warning-icon {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .delete-warning {
+        margin-bottom: 2rem;
+    }
+    
+    .delete-warning p {
+        margin-bottom: 0.5rem;
+        color: #2c3e50;
+    }
+    
+    .warning-text {
+        color: #e74c3c;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    
+    .student-details {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+    
+    .student-details h3 {
+        color: #2c3e50;
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+    }
+    
+    .student-details ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .student-details li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .student-details li:last-child {
+        border-bottom: none;
+    }
+    
+    .student-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    
+    .delete-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+    
+    .btn {
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.2s;
+    }
+    
+    .btn-danger {
+        background-color: #e74c3c;
+        color: white;
+    }
+    
+    .btn-danger:hover {
+        background-color: #c0392b;
+    }
+    
+    .btn-secondary {
+        background-color: #95a5a6;
+        color: white;
+    }
+    
+    .btn-secondary:hover {
+        background-color: #7f8c8d;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .delete-card {
+            padding: 1.5rem;
+        }
+        
+        .delete-actions {
+            flex-direction: column;
+        }
+        
+        .btn {
+            text-align: center;
+        }
+        
+        .student-details li {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
+{% endblock %}

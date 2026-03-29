@@ -1,0 +1,22 @@
+# Virtual environment
+venv/
+
+# Database (contains real data)
+db.sqlite3
+
+# Media files (uploaded images)
+media/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code settings
+.vscode/
+
+# Environment variables
+.env
+
+# Django static files collected
+staticfiles/
