@@ -2,7 +2,7 @@ import React from 'react'
 
 function Contacts() {
   return (
-    <footer className="py-12 bg-gray-950 text-white text-center border-t border-gray-800 ">
+    <footer className="py-12  bg-gray-950 text-white text-center border-t border-gray-800 ">
       <h3 className="text-2xl font-bold mb-2">Mohamed Abdelhaq</h3>
       <p className="text-gray-400 mb-6">Feel free to reach out for collaborations.</p>
       

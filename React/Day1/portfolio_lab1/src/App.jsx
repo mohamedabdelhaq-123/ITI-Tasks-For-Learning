@@ -14,7 +14,7 @@ function App() {
     <Bio />
     <Education />
     <Skills />
-    <Contacts className="contactClass"/>
+    <Contacts />
     </div>
   )
 }
