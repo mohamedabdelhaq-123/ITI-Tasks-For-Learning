@@ -1,0 +1,53 @@
+<!-- Shared across whole proj. bec, if other apps needed it  -->
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Student Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="nav-brand">📚 Student Management</a>
+        <ul class="nav-links">
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'school:home' %}">Home</a></li>
+          <li><a href="{% url 'school:student_list' %}">Students</a></li>
+          <li><a href="{% url 'school:subject_list' %}">Subjects</a></li>
+          <li><a href="{% url 'school:grade_list' %}">Grades</a></li>
+          <li><a href="{% url 'school:profile' %}">Profile</a></li>
+          <form method="post" action="{% url 'school:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">Logout</button>
+          </form>
+          {% else %}
+          <li><a href="{% url 'school:login' %}">Login</a></li>
+          <li><a href="{% url 'school:register' %}">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content Block - Child templates inject content here -->
+    <main class="main-content">
+      {% block content %}
+      <!-- Default content goes here if needed -->
+      {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; {% now "Y" %} Student Management System</p>
+            <a href="{% url 'school:contact' %}" class="footer-link">Contact Us</a>
+        </div>
+    </footer>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>
