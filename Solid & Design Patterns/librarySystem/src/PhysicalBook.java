@@ -10,3 +10,7 @@ public class PhysicalBook extends Book{
 
     }
 }
+
+// Book (physical,ebook,...)=> abstract
+// physical,ebook,... extends
+// in each return new instance from the implemented 

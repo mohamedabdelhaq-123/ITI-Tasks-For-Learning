@@ -2,12 +2,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryService {
-    private LibraryService instance;
+    private static LibraryService instance; // static variable to hold the instance
     private List<Book> books = new ArrayList<>();
 
-    LibraryService(){
-
+    private LibraryService(){
+        System.out.println("LibraryService instance created");
     }
+
+    public static synchronized LibraryService getInstance(){ // public static method to get the instance & synch to prevent multiple instances due java is multi-threaded
+        if(instance == null){
+            instance = new LibraryService();
+        }
+        return instance;
+    }
+
+    
     public void addBook(Book book) {
         books.add(book);
     }
