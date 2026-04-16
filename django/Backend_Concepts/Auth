@@ -1,0 +1,90 @@
+Statefull:
+
+Statelfull flow: [ 
+Login(user send username/pass to server)---> 
+Verify(server check db to see if username/pass {called credentials} are correct or no)----> 
+Session Creation (server creates session in server's memory/db and give it id {session id})-->
+Cookie handing (server sends cookie {a small text file sent by server} that contian session ID to the user) --->
+User next Req (user send new req. and brower attach session id cookie)--->
+lookup (server recives id and search in memory/db to check is it valid or no)--->
+response (server sends requested data)
+]
+
+
+what inside cookie: name& value , expiration data, domain
+
+
+
+But, the session way with the number of users on any app it makes headache and may crash servers due to too much data in the memory, so they invented the Tokens way (most famous is JWT)
++ if there are load balancers server a won't know server B  session ids, so need shared db cache or something else, not best idea.
+
+
+
+
+
+Stateless:
+Every req. to server is treated as the first request btw you and the server.
+
+Stateless flow: [ 
+Login(user send username/pass to server)---> 
+Verify(server check db to see if username/pass {called credentials} are correct or no)----> 
+Token Creation(server create token/JWT (on for access and other for refresh) that contains user info + secret key {Header.payload.Signature}) --->
+Token handing (server send JWT to user {so no data is stored in server now})---->
+User next Req (user send new req. and with each req. attach the JWT (which is saved in local storage) in Authorization headers)-->
+Server validation (Server recieves JWT and check cryptographic signature if valid the respond)-->
+Response (Server sends the requested data)
+ ]
+
+
+EX on JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwiZW1haWwiOiJhbGlAZXhhbXBsZS5jb20iLCJleHAiOjE3MTM5MTQ0MDB9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+
+What is token consists of (Header.Payload.Signature)
+Header-> Algorithm used to generate signature + type of the object which is JWT.
+Payload-> user data {id,name,token exp.} "The payload is Base64-encoded, not encrypted. Never put passwords or secrets inside a JWT.
+"
+Signature-> Server takes Header+payload+secretKey in server and mix them together by the alog. way sent in header if they are eq. to signature then valid passage
+
+Why 2 tokens at start?
+The reason this matters: you can't invalidate a JWT. Once it's signed, it's valid until it expires. If a user logs out, or you ban an account, the server has no way to force that token to stop working — unless you keep a blacklist. That's why access tokens are kept short-lived. Even if leaked, they expire fast.
+
+NOTE: JWT is encoded (anyone can see it) not encrypted, but if anyone tried to modify in it the server will reject it (403 unauthz error).
+
+
+The disadv of JWT is the logout:
+
+With sessions, logout is trivial — delete the session row, done. The session ID the user holds becomes meaningless.
+With JWT, the token is self-validating. There's no row to delete. So "logout" in JWT typically means:
+
+Frontend logout — React deletes the tokens from localStorage. The user can't make authenticated requests anymore from this device. But technically the token is still valid until expiry.
+True logout — add the token to a blacklist in Redis or DB. On every request, check the blacklist. This partially brings back the "DB hit per request" you were trying to avoid with JWT.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To solve this 
