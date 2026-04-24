@@ -43,16 +43,25 @@ llm = genai.GenerativeModel(tools=[search_hospitals,save_patient_case] ,model_na
 
 app = FastAPI()
 
-
+session={}
 class ChatRequest(BaseModel):
     mss: str
+    id: str="default"
 
 
 @app.post("/chat")
 async def chat(req: ChatRequest):
     try:
-        chat=llm.start_chat(enable_automatic_function_calling=True)
+        if req.id not in session:
+            session[req.id] = []
+        
+        history = session[req.id][-5:]
+
+        chat=llm.start_chat(history=history, enable_automatic_function_calling=True)
         response = chat.send_message(content=req.mss) 
+
+        session[req.id].append({"role": "user", "parts": [req.mss]})
+        session[req.id].append({"role": "model", "parts": [response.text]})
         return {"status": "success", "agent_response": response.text}
         
     except Exception as e:
