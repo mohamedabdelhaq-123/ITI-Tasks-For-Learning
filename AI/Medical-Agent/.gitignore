@@ -1,0 +1,17 @@
+# Python virtual environment
+.venv/
+bin/
+lib/
+lib64/
+include/
+pyvenv.cfg
+__pycache__/
+*.pyc
+
+# Environment variables (keep your API keys safe)
+.env
+
+# Node / React
+chef-chat/node_modules/
+chef-chat/dist/
+
