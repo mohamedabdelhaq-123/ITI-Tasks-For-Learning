@@ -1,0 +1,43 @@
+
+
+type Author{
+    id:ID!
+    fullname:String!
+    email:String!
+    dob:String
+
+    articles:[Article!]
+    comments:[Comment!]
+}
+
+type Article{
+    id:ID!
+    title:String!
+    content:String!
+    author:Author!
+    comments:[Comment!]
+}
+
+type Comment{
+    id:ID!
+    title:String!
+    content:String!
+    author:Author!
+    article:Article!
+}
+
+
+type Query{
+    authors:[Author!]
+    author(id:ID!):Author
+    articles:[Article!]
+    article(id:ID!):Article
+    comments:[Comment!]
+    comment(id:ID!):Comment
+}
+
+type Mutation{
+    createAuthor(fullname:String!, email:String!, dob:String):Author!
+    createArticle(title:String!, content:String!, authorId:ID!):Article!
+    createComment(title:String!, content:String!, authorId:ID!, articleId:ID!):Comment!
+}
