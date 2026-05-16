@@ -1,0 +1,37 @@
+1- Introduction , MVC pattern and Installation ✅
+2- Project structure walkthrough ✅
+3- Routing ✅
+4- Creating and using Controller ✅
+5- Blade Basics
+----------------------------------------
+MVC
+M-> model -> database
+V-> View -> UI
+C-> Controller -> Logic
+----------------------------------------
+- install composer (what is composer) ==> https://getcomposer.org/download/
+ 
+- install Laravel installer ==> composer global require laravel/installer
+	- create new application ==> laravel new example-app
+	or
+	- Alternative method using Composer: composer create-project laravel/laravel my-app
+ 
+	- cd example-app
+	- php artisan serve
+
+---------------------------------------------
+Flow:
+	routes -> middleware -> controller -> databse (model)
+					   -> View (ui) 
+-----------------------------------------
+code <- config <--- .env
+-----------------------------------------
+composer i
+-----------------------------------
+
+php artisan serve
+php artisan migrate
+
+--------------------------------------------
+php artisan make:controller PostController
+php artisan make:controller PostController --resource

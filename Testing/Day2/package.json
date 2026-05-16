@@ -1,0 +1,16 @@
+{
+  "name": "unit-testing-exercises",
+  "version": "1.0.0",
+  "description": "Unit Testing Session 2 — Exercises",
+  "scripts": {
+    "test": "jest",
+    "test:ex01": "jest ex01",
+    "test:ex02": "jest ex02",
+    "test:ex03": "jest ex03"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.1.4",
+    "mongoose": "^8.3.0"
+  }
+}

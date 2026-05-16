@@ -1,0 +1,88 @@
+1- Blades (@extends , @yield, section, @include) ✅
+2- Blade Components ✅
+
+3- DB Facade (raw) & Eloquent (Laravel ORM)
+	- Migration ✅
+	- Relations ✅ (1 to m)
+4- Factory and Seeder
+4- Tinker
+---------------------------------------
+php artisan make:migration name 
+php artisan make:migration create_posts_table 
+php artisan make:model Post -m 
+
+Table: posts
+Model: Post
+Controller: PostController
+
+------------------------------------------
+● Migrate Options
+php artisan make:migration name 
+php artisan migrate 
+  	Runs all the migrations that haven't been run yet.
+
+php artisan migrate:fresh       
+    	drops all tables in the database and then runs all migrations from scratch.
+
+
+php artisan migrate: refresh         
+	rolls back all migrations and then runs them again.
+	It doesn’t drop the tables directly but uses the migration rollback mechanism.
+
+
+php artisan migrate:reset           
+	Rollback all database migrations
+
+php artisan migrate:rollback 
+	Rollback the last database migration
+
+php artisan migrate:status       
+	Show the status of each migration
+-----------------------------------------------------
+
+Elqouent: https://laravel.com/docs/master/eloquent#introduction
+Collections Methods : https://laravel.com/docs/master/collections#available-methods
+DB Facade: https://laravel.com/docs/12.x/queries
+
+----------------------------------------------------
+
+Relation
+---------
+posts    users
+1	1
+m       1
+-------------------
+m(fk)       1
+
+100 user -> 1q
+loop($users as $user) 100 q
+	select * form posts where user_id == $user->id
+-----------------------------------------------------------
+create relation :
+1 - add fk in migration (db level)
+2 - in your models (user , post) create relation functions
+post.php
+public function user(){
+	return $this->belongsTo(User::class, 'author_id')
+}
+
+User.php
+public function posts(){
+	return $this->hasMany(Post::class, 'author_id')
+}
+
+----------------------------------------
+php artisan make:factory PostFactory 
+php artisan tinker
+php artisan db:seed  --class=UserSeeder
+php artisan db:seed  
+
+
+
+
+
+
+
+
+
+
