@@ -1,0 +1,321 @@
+const SiteName ='POVue';
+
+const products =[
+  {
+    "id": 1,
+    "name": "Nike Air Max 270",
+    "description": "Lifestyle sneaker featuring Nike's large Max Air heel unit for all-day comfort and modern streetwear styling.",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80",
+    "badge": "NEW",
+    "price": 180,
+    "discount": 0,
+    "stock": 18,
+    "tags": ["Men", "Casual", "Fashion"]
+  },
+  {
+    "id": 2,
+    "name": "Adidas Ultraboost 22",
+    "description": "High-performance running shoe with responsive Boost cushioning and Primeknit upper for energy return.",
+    "image": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1200&q=80",
+    "badge": "SALE",
+    "price": 220,
+    "discount": 20,
+    "stock": 12,
+    "tags": ["Women", "Running", "Sport"]
+  },
+  {
+    "id": 3,
+    "name": "Puma RS-X Reinvention",
+    "description": "Chunky retro-inspired sneaker with bold color blocking and cushioned RS technology.",
+    "image": "https://images.unsplash.com/photo-1543508282-6319a3e2621f?auto=format&fit=crop&w=1200&q=80",
+    "badge": "",
+    "price": 130,
+    "discount": 0,
+    "stock": 8,
+    "tags": ["Men", "Casual", "Fashion"]
+  },
+  {
+    "id": 4,
+    "name": "New Balance 574 Core",
+    "description": "Classic everyday sneaker with suede and mesh upper offering timeless comfort and durability.",
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=1200&q=80",
+    "badge": "SALE",
+    "price": 110,
+    "discount": 15,
+    "stock": 14,
+    "tags": ["Women", "Casual"]
+  },
+  {
+    "id": 5,
+    "name": "Vans Old Skool",
+    "description": "Iconic skate shoe with durable suede canvas upper and signature side stripe.",
+    "image": "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1200&q=80",
+    "badge": "",
+    "price": 75,
+    "discount": 0,
+    "stock": 20,
+    "tags": ["Men", "Casual", "Summer"]
+  },
+  {
+    "id": 6,
+    "name": "Converse Chuck Taylor All Star High Top",
+    "description": "Legendary canvas basketball-inspired sneaker with classic vulcanized rubber sole.",
+    "image": "https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=1200&q=80",
+    "badge": "NEW",
+    "price": 65,
+    "discount": 0,
+    "stock": 16,
+    "tags": ["Women", "Casual", "Fashion"]
+  },
+  {
+    "id": 7,
+    "name": "Reebok Nano X3",
+    "description": "Training shoe designed for gym workouts with responsive cushioning and stability support.",
+    "image": "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=1200&q=80",
+    "badge": "SALE",
+    "price": 150,
+    "discount": 25,
+    "stock": 11,
+    "tags": ["Men", "Sport", "Running"]
+  },
+  {
+    "id": 8,
+    "name": "Skechers D'Lites",
+    "description": "Comfort-focused chunky sneaker with memory foam cushioning and retro-inspired design.",
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=1000&q=80",
+    "badge": "",
+    "price": 90,
+    "discount": 0,
+    "stock": 6,
+    "tags": ["Women", "Casual", "Fashion"]
+  },
+  {
+    "id": 9,
+    "name": "Timberland Premium 6-Inch Boot",
+    "description": "Waterproof leather boot built for rugged outdoor use with padded ankle support.",
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80",
+    "badge": "SALE",
+    "price": 240,
+    "discount": 30,
+    "stock": 7,
+    "tags": ["Men", "Outdoor", "Winter"]
+  },
+  {
+    "id": 10,
+    "name": "Dr. Martens 1460 Smooth Leather Boot",
+    "description": "Classic eight-eye boot with air-cushioned sole and durable smooth leather construction.",
+    "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1200&q=80",
+    "badge": "",
+    "price": 190,
+    "discount": 0,
+    "stock": 5,
+    "tags": ["Women", "Fashion", "Winter"]
+  },
+  {
+    "id": 11,
+    "name": "Nike Revolution 7",
+    "description": "Lightweight running shoe designed for everyday jogging with soft foam cushioning.",
+    "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=1200&q=80",
+    "badge": "NEW",
+    "price": 85,
+    "discount": 0,
+    "stock": 22,
+    "tags": ["Men", "Running", "Sport"]
+  },
+  {
+    "id": 12,
+    "name": "Adidas Stan Smith",
+    "description": "Minimalist leather tennis-inspired sneaker with iconic perforated three stripes.",
+    "image": "https://images.unsplash.com/photo-1520256862855-398228c41684?auto=format&fit=crop&w=1200&q=80",
+    "badge": "",
+    "price": 95,
+    "discount": 0,
+    "stock": 0,
+    "tags": ["Women", "Casual", "Fashion"]
+  },
+  {
+    "id": 13,
+    "name": "Puma Future Rider",
+    "description": "Retro running-inspired sneaker featuring lightweight cushioning and vibrant detailing.",
+    "image": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=1200&q=80",
+    "badge": "SALE",
+    "price": 100,
+    "discount": 18,
+    "stock": 9,
+    "tags": ["Men", "Casual", "Summer"]
+  },
+  {
+    "id": 14,
+    "name": "New Balance Fresh Foam X 1080v13",
+    "description": "Premium cushioned running shoe engineered for long-distance comfort and smooth transitions.",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80",
+    "badge": "SALE",
+    "price": 210,
+    "discount": 22,
+    "stock": 13,
+    "tags": ["Women", "Running", "Sport"]
+  },
+  {
+    "id": 15,
+    "name": "Vans Slip-On Checkerboard",
+    "description": "Classic laceless skate shoe with checkerboard print and flexible vulcanized sole.",
+    "image": "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?auto=format&fit=crop&w=1200&q=80",
+    "badge": "",
+    "price": 70,
+    "discount": 0,
+    "stock": 0,
+    "tags": ["Kids", "Casual", "Summer"]
+  },
+  {
+    "id": 16,
+    "name": "Converse Run Star Hike",
+    "description": "Platform sneaker blending Chuck Taylor heritage with bold serrated outsole styling.",
+    "image": "https://images.unsplash.com/photo-1543508282-6319a3e2621f?auto=format&fit=crop&w=1000&q=80",
+    "badge": "NEW",
+    "price": 120,
+    "discount": 0,
+    "stock": 15,
+    "tags": ["Women", "Fashion", "Casual"]
+  },
+  {
+    "id": 17,
+    "name": "Reebok Classic Leather",
+    "description": "Vintage-inspired leather sneaker offering soft comfort and timeless athletic style.",
+    "image": "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=1200&q=80",
+    "badge": "",
+    "price": 90,
+    "discount": 0,
+    "stock": 10,
+    "tags": ["Men", "Casual"]
+  },
+  {
+    "id": 18,
+    "name": "Skechers Go Run Consistent",
+    "description": "Athletic running shoe with responsive cushioning and breathable mesh upper.",
+    "image": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1000&q=80",
+    "badge": "SALE",
+    "price": 95,
+    "discount": 12,
+    "stock": 17,
+    "tags": ["Women", "Running", "Sport"]
+  },
+  {
+    "id": 19,
+    "name": "Timberland Euro Sprint Hiker",
+    "description": "Outdoor hiking boot with rugged traction outsole and premium leather upper.",
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80",
+    "badge": "",
+    "price": 170,
+    "discount": 0,
+    "stock": 4,
+    "tags": ["Men", "Outdoor", "Winter"]
+  },
+  {
+    "id": 20,
+    "name": "Dr. Martens Jadon Platform Boot",
+    "description": "Bold platform boot with signature yellow stitching and chunky sole design.",
+    "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1000&q=80",
+    "badge": "SALE",
+    "price": 260,
+    "discount": 35,
+    "stock": 3,
+    "tags": ["Women", "Fashion", "Winter"]
+  },
+  {
+    "id": 21,
+    "name": "Nike Kids Air Force 1",
+    "description": "Kids version of the iconic basketball sneaker with durable leather upper and cushioned sole.",
+    "image": "https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=1000&q=80",
+    "badge": "NEW",
+    "price": 80,
+    "discount": 0,
+    "stock": 19,
+    "tags": ["Kids", "Casual", "Fashion"]
+  },
+  {
+    "id": 22,
+    "name": "Adidas Kids Superstar",
+    "description": "Classic shell-toe sneaker for kids with durable leather upper and rubber cupsole.",
+    "image": "https://images.unsplash.com/photo-1520256862855-398228c41684?auto=format&fit=crop&w=1000&q=80",
+    "badge": "",
+    "price": 65,
+    "discount": 0,
+    "stock": 0,
+    "tags": ["Kids", "Casual"]
+  },
+  {
+    "id": 23,
+    "name": "Puma Kids Smash V2",
+    "description": "Comfortable kids sneaker inspired by classic tennis footwear with soft cushioning.",
+    "image": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=1000&q=80",
+    "badge": "SALE",
+    "price": 55,
+    "discount": 10,
+    "stock": 21,
+    "tags": ["Kids", "Sport", "Summer"]
+  },
+  {
+    "id": 24,
+    "name": "New Balance Kids 680v6",
+    "description": "Kids running shoe with lightweight cushioning and breathable mesh support.",
+    "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=1000&q=80",
+    "badge": "",
+    "price": 60,
+    "discount": 0,
+    "stock": 0,
+    "tags": ["Kids", "Running", "Sport"]
+  },
+  {
+    "id": 25,
+    "name": "Nike Blazer Mid '77 Vintage",
+    "description": "Retro basketball-inspired sneaker with vintage mid-top styling and suede accents.",
+    "image": "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=1000&q=80",
+    "badge": "SALE",
+    "price": 125,
+    "discount": 28,
+    "stock": 14,
+    "tags": ["Men", "Fashion", "Casual"]
+  }
+]
+// const navLinks = [
+//   { name: 'Home', href: '/' },
+//   { name: 'About', href: '/' },
+//   { name: 'Contact', href: '/' },
+// ];
+
+// const MainProduct = {
+//   "id": 1,
+//   "name": "Cozy Sneakers",
+//   "description": "High-quality sneakers that go with everything you wear.",
+//   "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80", 
+//   "badge": "NEW",
+//   "price": 120,
+//   "discount": 20,
+//   "tags": ["Fashion", "Casual", "Sport"]
+// };
+
+// const RelatedProducts = [
+//   {
+//     "id": 2,
+//     "name": "Running Shoes",
+//     "price": 90,
+//     "discount": 10,
+//     "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80" 
+//   },
+//   {
+//     "id": 3,
+//     "name": "Casual Boots",
+//     "price": 150,
+//     "discount": 0,
+//     "image": "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=800&q=80" 
+//   },
+//   {
+//     "id": 4,
+//     "name": "Flip Flops",
+//     "price": 30,
+//     "discount": 50,
+//     "image": "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80" 
+//   }
+// ];
+
+export { products, SiteName};
