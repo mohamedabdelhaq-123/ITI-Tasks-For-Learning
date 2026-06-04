@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="view_partner_form_inherit_hms" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.hms</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <group name="misc" position="inside">
+                    <field name="related_patient_id"/>
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>

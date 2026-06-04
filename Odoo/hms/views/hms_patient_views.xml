@@ -1,0 +1,78 @@
+<odoo>
+<record id="hms_patient_action" model="ir.actions.act_window">
+    <field name="name">Patients</field>
+    <field name="res_model">hms.patient</field>
+    <field name="view_mode">list,form,kanban</field>
+</record>
+
+<record id="view_patient_form" model="ir.ui.view">
+    <field name="name">hms.patient.form</field>
+    <field name="model">hms.patient</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="email"/>
+                    <field name="birth_date"/>
+                    <field name="history" invisible="50 &gt; age"/>
+                    <field name="pcr"/>
+                    <field name="cr_ratio" required="pcr==True"/>
+                    <field name="blood_type"/>
+                    <field name="image"/>
+                    <field name="address"/>
+                    <field name="age"/>
+                    <field name="status"/>
+                    <!-- <field name="department_opened" invisible="1"/> -->
+                    <!-- <field name="patient_department_ids" required="department_opened==True"/> -->
+                    <field name="patient_department_ids" domain="[('is_opened','=','True')]"/>
+                    <!-- issue that the domain uses the relation to access the other model's field so, cond. must not be department_opened -->
+                    <field name="patient_doctor_ids" widget="many2many_tags" readonly="patient_department_ids==False"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<!-- Hide Doctor Fields in Patient Form for User -->
+<record id="view_hms_patient_form_hide_doctors" model="ir.ui.view">
+    <field name="name">hms.patient.form.hide.doctors</field>
+    <field name="model">hms.patient</field>
+    <field name="inherit_id" ref="hms.view_patient_form"/>
+    <field name="arch" type="xml">
+        <field name="patient_doctor_ids" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+    </field>
+</record>
+
+
+<menuitem id="hms_menu" name="HMS" web_icon="hms,static/description/icon.png"
+/>
+<menuitem id="hms_menu_patients" name="Patients" parent="hms_menu" action="hms_patient_action"/>
+<menuitem id="hms_menu_doctors" name="Doctors" parent="hms_menu" action="hms_doctor_action" groups="hms.group_hms_manager"/>
+
+</odoo>
+
+
+
+<!-- 
+<record id="view_patient_form_inherit" model="ir.ui.view">
+    <field name="name">hms.patient.form.inherit</field>
+    <field name="model">hms.patient</field>
+    <field name="inherit_id" ref="hms.view_patient_form"/>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+        <xpath expr="//field[@name='department_id']" position="replace">
+                <field name="department_opened" />
+                <field name="patient_department_ids" required="department_opened==True"/>
+        </xpath>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record> -->
