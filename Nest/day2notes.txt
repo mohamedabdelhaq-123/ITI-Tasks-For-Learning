@@ -1,0 +1,146 @@
+Day2 Agenda:
+
+DTO
+Pipes
+DB connection (TypeORM
+Nest CLI
+Guards
+Interceptors
+
+========================================
+
+
+DTO: how data is sent and trans. (validation won't put it in custom manually in the services/controllers and check if each field i'm waiting for is right or even sent or not)
+
+big issue that in runtime the ts is converted to js so the data is sent won't have the static typing of ts so, DTO
+put auto. validation 
+
+flow: req-> routes resolver-> pipe (intersect req)-> DTO (Json to obj.) -> apply rules -> if invalid throw 400 else pass to controller
+
+create file: dto/create-user.dto
+ 
+export class createUserDto{ // make class not interface so dto works
+	@IsString()
+	name:string;
+	
+	@IsEmail()
+	@IsOptional()
+	email:string;
+}
+
+// 2. Use it in Controller
+@Post('users')
+createUser(@Body() createUserDto: CreateUserDto) {
+
+
+adv.:
+security
+ that if the req shape is change i'll change in one part which is class createuserdto (loose coupling)
+ separtaion of concerns 
+
+===========================
+
+pipes: validate on anything (like middelware)
+on all the app 
+
+diff. btw middelwares and pipes that midd: on the whole req., but pipe on 
+
+app.useGlobalPipes(new ValidationPipe()) // before app runs (await app.listen)
+
+use parseIntPipe in params for id and remove the + in id
+// class validator has too much validations
+// can use zod 
+
+but the field that has validation is required, to make it not so go to create user dto @IsOptional()
+
+
+===========================
+
+db connection:
+
+npm i --save @nestjs/
+
+1. in app module imports :[usermodule, TypeOrmModle.forRoot({
+
+type:'postgres'
+host:'localhost'
+port
+username
+password
+database
+autoloadentities
+synchronize // not recommended in prod. env(delete and create entity if columns changed)
+})]
+
+
+// how to check that conn. of db is done -> app not crashes
+
+create: user.entity.ts
+
+@Entity() // related to type orm
+export class Users{
+    @PrimaryGeneratedColumn()
+    id: number;
+    
+    @Column() //regular column
+    name:string;
+    
+  
+}
+
+imports in usermodule
+imports: [TypeModules.forFeature()]
+// to inject table in service use @InjectRepositary()
+inject user repo in user service
+// remove array
+constructor(
+    // ✅ Injecting the TypeORM Repository for the User entity
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+  ) {}
+
+
+addUser(newUser:CreateUserDto){
+	const createdUser= this.userRepository.create(newUser);
+	this.userrepo.save(createduser);
+	return createdUser;
+}
+
+
+async getAll(): Promise<>{
+return await this.userrepo.find();}
+
+
+// flow of data:
+
+app module-> typeorm.forRoot()-> read @Entity -> put Reopository<Entity> in di container-> inject repo in service 
+
+
+=================================
+
+nest cli:
+nest g resource orders
+restapi
+yes generate crud
+and changed in app module also
+
+
+=============================
+
+Gaurds:
+will this req will be handeled by routes??
+
+=============
+
+Interceptors:
+error handling
+
+
+
+
+
+
+
+
+
+

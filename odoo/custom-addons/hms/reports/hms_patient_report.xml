@@ -1,0 +1,50 @@
+<odoo>
+
+    <record id="action_hms_patient_report" model="ir.actions.report">
+        <field name="name">Patient Status Report</field>
+        <field name="model">hms.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hms.report_hms_patient_template</field>
+        <field name="report_file">hms.report_hms_patient_template</field>
+        <field name="binding_model_id" ref="model_hms_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_hms_patient_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="patient">
+                <t t-call="web.external_layout">
+
+                    <div class="page">
+
+                        <h2>Patient Status Report</h2>
+
+                        <p>
+                            <strong>Name:</strong>
+                            <span t-field="patient.first_name"/>
+                            <span t-field="patient.last_name"/>
+                        </p>
+
+                        <p>
+                            <strong>Age:</strong>
+                            <span t-field="patient.age"/>
+                        </p>
+
+                        <p>
+                            <strong>Birth Date:</strong>
+                            <span t-field="patient.birth_date"/>
+                        </p>
+
+                        <p>
+                            <strong>Email:</strong>
+                            <span t-field="patient.email"/>
+                        </p>
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

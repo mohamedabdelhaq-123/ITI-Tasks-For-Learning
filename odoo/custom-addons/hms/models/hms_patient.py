@@ -65,6 +65,28 @@ class Patient(models.Model):
                 
 
 
-# The PCR field should be automatically checked if the age is 
-# lower than 30 and show a warning message that it has 
-# been checked 
+
+
+
+
+
+
+
+# lab 4
+# Continue with our previously created module "hms"
+# Create two new user groups (user, manager)
+# The user group has the following access rights:
+# Can create/read/update his own patients records
+# Can read only departments
+# Can read only doctors
+# Can't view doctor fields in patients' form view
+# Can't view doctors' menu item
+
+# OPEN SOURCE DEPARTMENT
+# HMS (Hospitals Management System):
+# The Manager group has the following access rights:
+# Can create/read/update/delete all patients records
+# Can create/read/update/delete departments
+# Can create/read/update/delete doctors
+# Can view doctor fields in patients form view
+# Can view doctors menu item
