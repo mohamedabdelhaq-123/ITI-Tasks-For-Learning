@@ -1,0 +1,281 @@
+Table of Contents
+Introduction
+Installation of ruby
+Basics of ruby language
+Type conversion vs kernel methods
+Variables
+Methods, Flow control, Loops
+Data structures
+Arrays
+Hashes
+Code block
+More Iterators
+Exception handling
+Classes, modules, mixins
+
+
+
+-------------------------------------------
+
+OOP lang., interpreter, japanease, ruby on rails framework (bettter DX)
+
+rvm/asdf in ruby === npm in node
+
+--------------------------------
+
+file is .rb
+
+puts "hello,world" -> to run => ruby filename.rb
+
+or for using ruby shell use -> pry -> faster and easier -> install it by gem install pry
+
+single line comment # , multi line comment =begin ......... =end
+
+1_000_000 -> 1000000
+
+
+combined comparison
+
+1 <=> 10 -> -1
+10 <=> 10 -> 0
+10 <=> 1 -> 1
+can use it in sorting
+
+fallsy vals -> nil,false
+0,"",[]-> true
+
+'' -> better in linter (interpolation use case)
+
+'h' + 'w' ->hw
+'h'+ 3 error
+'h' + 3.to_s -> h3
+
+hello
+a[2,3]->llo
+a[2..3]->ll
+
+"hello".class -> string
+"hello".methods -> available methods can be used with strings
+a="hello"
+a.capitalize -> pass by value
+vs 
+a.capitalize! -> pass by ref. (bang  methods)
+vs 
+a.includes?"s" -> (boolean methods)
+
+:pending.class -> symbol (what is symbol)
+
+(why better to use symbols instead of str in keys?)
+
+a=(1..10)-> 10 included
+a=(1...10) -> 10 not included
+
+puts a.include?(5) -> boolean 
+
+ri a.reject -> docs or manual
+
+
+type conversion methods vs kernel methods
+-> type -> in wrong input -> def. vals 0,0.0,""
+-> kernel -> raise error
+---> depened on use case
+
+
+ruby allow multi. assign.
+x=y=10
+
+x,y=5,10 ---> swap ----> x,y=y,x
+
+x=1,2,3 -> x= [1,2,3]
+
+x, = 1,2,3 -> x=1
+
+x,y = 1,2,3 -> x=1, y=2
+
+Glob var => $
+Instance => @
+Class (static)=> @@
+Constant & class names => start with capital letter
+
+FUnctions:like py
+
+def say_hello(name)
+  puts "hello,#{name}"
+end 
+
+say_hello "ahmed"/ say_hello("ahmed") -> func. call
+
+
+alias same_say_hello say_hello -> the first one copies the implementation by value, so if say_hello changed/overriden the same_say_hello never changed 
+
+
+
+if (true || false) && false // can use keyword or and and 
+...........
+elsif false
+..........
+else
+.......
+end //one end
+
+if x==5
+  puts "x is here"
+end
+
+===> formated to ===> puts "x is here" if x==5
+
+if x!=5
+  puts "x isn't here"
+end
+
+===> formated to ===> puts "x isn't here" unless x==5
+
+
+def is_leap(y)
+leap= case
+when y%400==0 then true //stop and return true
+when y%100==0 then false
+else y%4==0 // if equals 0 then ret. true else ret. false
+end
+return leap
+end
+
+
+==> refactor:
+convention -> is_leap? (best practice)
+no need to return -> leap is enought no need for return keyword
+no need for leap var also at end
+no need for leap variable at all for saving value
+
+-> the most important is the return value of the case
+
+
+loops same way in conventions
+
+sq = sq*sq while sq <1000
+
+
+for a in 1..4
+puts a
+end
+
+4.times do 
+puts "MO"
+end
+
+shorthand for arr of str -> %w(mo mo mo) -> ["mo","mo","mo"]
+same for symbols
+
+
+arr[12] -> not error but nil
+
+1+1 => 1.+(1) syntatic sugar
+push to arr -> arr<<6 
+
+hash/objects/dictonary
+
+hash= {"color"=> "green"} 
+-> 
+{:color => "green"}
+->
+{color:"green"}
+
+
+puts hash[:color] // first way won't work
+hash.keys
+hash.value?(3)
+...
+
+
+code block: 
+5.times {|x| puts "x is #{x}} // The |x| defines a variable named x that only exists inside this block Every time Ruby repeats the loop, it automatically passes the current count into x. Ruby always starts counting at 0.
+
+if var not in scope so go to outer scope to get it.
+
+
+exception handling: try catch finally -> begin, rescue, ensure
+
+Class Dog // Capital
+
+def initialize(name)
+@name= name //by default priv
+end
+
+def bark 
+puts "barkk"
+end
+
+def name
+@name
+end
+
+def name=(newName)
+@name=newName
+end
+
+end // alwwys end
+
+dog_1 = Dog.new("roky")
+
+dog_1.bark
+dog_1.name ="momo" // syntatic sugar  dog_1.name=("momo")
+pust dog_1.name // error so need to add name getter
+pust dog_1.name
+
+
+shorthands for making code for getters
+attr_reader :name
+
+same for setter attr_writer :name
+
+for both 
+attr_accessor :name
+
+
+for inheritance  -> 
+class Student < Person
+super(name,age)
+
+overriding and so on
+
+but no overloading in ruby
+it takes last one
+
+
+*args like args in js
+
+static vars ->@@count=0
+and in 
+
+to make static methods -> def self.method
+
+self like this but points to class not instance
+
+access control
+
+by default any method -> is public
+ not used too much is protected and different from other langs
+ 
+ 
+
+module Animals // Capital also
+// can put classes anything
+end
+
+to access a method from class in moudle
+
+app= Animals::Dog.bark
+
+
+mixins (include)like use trait in php
+
+
+
+
+
+
+
+
+
+
+
